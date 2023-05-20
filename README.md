@@ -130,3 +130,6 @@ This command use different option:
 - `-d`: Esecuzione del container in modalità `detach` (background)
 - `-p`: Mappa le porte tra HOST e container (es.: 8080:3000 fa puntare la porta host 8080 sulla porta 3000 del contenitore)
 
+When we want to stop container we can use command `docker container <name of container> stop`
+
+> NOTE: to show list of container running we can use command `docker ps` 
