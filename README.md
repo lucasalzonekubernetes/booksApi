@@ -38,6 +38,14 @@ const path = require('path');
 ***cors***: is used to manage headers for cors filter
 ***path***: is used to use file as resources
 
+### App definition
+
+Now we can create `app` to manage request/response of API.
+
+```javascript
+const app = express();
+```
+
 ### Add middleware
 
 In express we can use `middleware` as interceptor of request. This middleware can add behaviour befor each request and after each response.
@@ -47,4 +55,39 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors({origin:'*'}));
 ```
+
+## Route definition 
+
+Now we can use `app` to define routing for each endpoint we want.
+
+Example:
+
+```javascript
+app.get('/', (req, res) => {
+    console.log("HOME PAGE");
+    res.status(200).sendFile(path.join(__dirname, '/www/index.html'));
+});
+```
+
+In this example we have configure `app` to listen at root path `/` and response with html file `/www./index.html`
+
+## Run server
+
+Now we can use app to listen request:
+
+```javascript
+const host = process.env.HOST || 'localhost';
+const protocol = process.env.PROTOCOL || 'http';
+const port = process.env.PORT || 3000;
+...
+app.listen(port, () => {
+    console.log(`Services listening at ${protocol}://${host}:${port}`)
+    console.log("--> /home     : Home page");
+    console.log("--> /health   : health check servizio");
+})
+```
+
+
+
+
 
