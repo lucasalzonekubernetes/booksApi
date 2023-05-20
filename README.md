@@ -73,7 +73,7 @@ In this example we have configure `app` to listen at root path `/` and response 
 
 ## Run server
 
-Now we can use app to listen request:
+We can use app to listen request:
 
 ```javascript
 const host = process.env.HOST || 'localhost';
@@ -87,7 +87,11 @@ app.listen(port, () => {
 })
 ```
 
+Now if we want to start serve we can just use:
 
+```shell
+node index.js
 
+```
 
 
