@@ -94,4 +94,39 @@ node index.js
 
 ```
 
+## Integrate docker
+
+To integrate docker we can use a `dockerfile` to define command to create image and then run the `build`.
+
+Example of dockerfile:
+
+```
+FROM node:17-alpine
+
+COPY package*.json ./
+COPY *.html ./
+COPY *.js ./
+
+RUN npm cache clear --force && npm install
+
+ENTRYPOINT ["node", "index.js"]
+
+```
+
+### Create image
+
+With command `docker build . -t books-api` we tell docker to create an image with name `books-api` from the dockerfile.
+
+
+### Run / Stop container
+
+To run image, we can use command `docker run`:
+
+```
+docker run -d -p 8080:3000 books-api
+```
+
+This command use different option:
+- `-d`: Esecuzione del container in modalità `detach` (background)
+- `-p`: Mappa le porte tra HOST e container (es.: 8080:3000 fa puntare la porta host 8080 sulla porta 3000 del contenitore)
 
